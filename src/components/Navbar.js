@@ -18,6 +18,10 @@ function Navbar() {
                  <MenuItem>
                  <i class="fa fa-user" aria-hidden="true"></i>
                  <span>Account</span>
+                 <Submenu>
+                  <span><a href='#'>Sign-In</a></span>
+                  <span><a href='#'>Create an account</a></span>
+                 </Submenu>
                  </MenuItem>
                  <MenuItem>
                  <i class="fa fa-heart" aria-hidden="true"></i>
@@ -31,6 +35,26 @@ function Navbar() {
             <BurgerMenu>
             <i class="fa fa-bars" aria-hidden="true"></i>
             </BurgerMenu>
+            <SemiNavBar>
+               <SemiNavBarMenu>
+                    <SemiNavbarItem>
+                    <i class="fa fa-bars" aria-hidden="true"></i>
+                      <span>Caregories</span> 
+                    </SemiNavbarItem>
+                    <SemiNavbarItem>
+                      <i class="fas fa-mobile-alt"></i>
+                      <span>App Download</span> 
+                    </SemiNavbarItem>
+                    <SemiNavbarItem>
+                    <i class="far fa-star"></i>
+                    <span>Sell on ECIB</span>
+                    </SemiNavbarItem>
+                    <SemiNavbarItem>
+                    <span>Help</span>
+                    <i class="fas fa-caret-down"></i>
+                    </SemiNavbarItem>
+               </SemiNavBarMenu>
+            </SemiNavBar>
        </NavContainer>
   )
 }
@@ -38,7 +62,7 @@ function Navbar() {
 export default Navbar;
 
 const NavContainer = styled.div`
-   height:70px;
+   height:80px;
    background:#fff;
    width:100%;
    position:fixed;
@@ -89,14 +113,19 @@ padding:10px 5px;
 `
 const LeftMenu = styled.div`
   display:flex;
+  height:100%;
   @media(max-width:768px){
     display:none;
   }
 `
 const MenuItem = styled.div`
+height:100%;
+display:flex;
+align-items:center;
  cursor:pointer;
  margin:0 8px;
  padding: 0 8px;
+ position:relative;
  span{
    margin-left:8px;
    font-size:18px;
@@ -110,6 +139,11 @@ const MenuItem = styled.div`
    i{
     color:#f77426;
    }
+   div{
+    display:flex;
+    justify-content:center;
+    flex-direction:column;
+   }
  }
 `
 const BurgerMenu = styled.div`
@@ -119,4 +153,61 @@ font-size:18px;
   display:block;
   padding:0 15px;
 }
+`
+const Submenu = styled.div`
+   display:none;
+   background:#fff;
+   box-shadow: -2px 11px 23px 5px rgba(0,0,0,0.38);
+-webkit-box-shadow: -2px 11px 23px 5px rgba(0,0,0,0.38);
+-moz-box-shadow: -2px 11px 23px 5px rgba(0,0,0,0.38);
+border-radius: 0 0 5px 5px;
+   position:absolute;
+   left:0;
+   top:100%;
+   z-index:9999;
+    span{
+      width:200px;
+      text-align:center;
+      font-size:18px;
+      border:1px solid rgba(0,0,0,0.2);
+      padding:5px 20px;
+      margin:0 10px 20px;
+      border-radius:9999px;
+        &:nth-child(1){
+           margin-top:20px;
+           background:#f77426;
+        }
+       a{
+         text-decoration:none;
+         color:#000;
+       }
+    }
+`
+
+const SemiNavBar = styled.div`
+background:#fff;
+border-top:1px solid lightgray;
+position:absolute;
+height:40px;
+top:100%;
+left:0;
+right:0;
+display:flex;
+align-items:center;
+`
+const SemiNavBarMenu = styled.div`
+  display:flex;
+    div{
+      padding:20px;
+       span{
+         margin-left:7px;
+         font-size:18px;
+       }
+       i{
+        margin-left:7px;
+       }
+    }
+`
+const SemiNavbarItem = styled.div`
+ cursor:pointer;
 `
