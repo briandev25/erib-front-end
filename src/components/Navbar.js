@@ -1,9 +1,19 @@
-import React from 'react';
+import React,{ useState } from 'react';
 import styled from 'styled-components';
 
 function Navbar() {
+  const [navbar,setNavbar] = useState(false);
+
+  const changeBackground = () =>{
+    if(window.scrollY >= 80){
+      setNavbar(true);
+    }else{
+      setNavbar(false);
+    }
+  }
+  window.addEventListener('scroll',changeBackground);
   return (
-       <NavContainer>
+       <NavContainer change={navbar}>
             <NavLogo>
                  <a href="#"><img src='/images/my-logo.png'/></a>
             </NavLogo>
@@ -15,7 +25,7 @@ function Navbar() {
                     
             </SearchBox>
             <LeftMenu>
-                 <MenuItem>
+                 <MenuItem change={navbar}>
                  <i class="fa fa-user" aria-hidden="true"></i>
                  <span>Account</span>
                  <Submenu>
@@ -23,11 +33,11 @@ function Navbar() {
                   <span><a href='#'>Create an account</a></span>
                  </Submenu>
                  </MenuItem>
-                 <MenuItem>
+                 <MenuItem change={navbar}>
                  <i class="fa fa-heart" aria-hidden="true"></i>
                  <span>Liked</span>
                  </MenuItem>
-                   <MenuItem>
+                   <MenuItem change={navbar}>
                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                    <span>Cart</span>
                    </MenuItem>
@@ -35,7 +45,7 @@ function Navbar() {
             <BurgerMenu>
             <i class="fa fa-bars" aria-hidden="true"></i>
             </BurgerMenu>
-            <SemiNavBar>
+            <SemiNavBar change={navbar}>
                <SemiNavBarMenu>
                     <SemiNavbarItem>
                     <i class="fa fa-bars" aria-hidden="true"></i>
@@ -62,12 +72,13 @@ function Navbar() {
 export default Navbar;
 
 const NavContainer = styled.div`
-   height:80px;
-   background:#fff;
+   height:${props => props.change ?"70px" :'80px'};
+   background:${props => props.change ?"#fff" :'transparent'};
    width:100%;
    position:fixed;
    padding: 0 45px;
    display:flex;
+   z-index:50;
    align-items:center;
    @media(max-width:768px){
      justify-content:space-between;
@@ -129,13 +140,16 @@ align-items:center;
  span{
    margin-left:8px;
    font-size:18px;
+   color:${props => props.change ?"#000" :'#fff'};
  }
  i{
    font-size:18px;
-   color:#999999;
+   color:${props => props.change ?"#000" :'#999999'};
  }
  &:hover{
-   color:#f77426;
+    span{
+      color:#f77426;
+    }
    i{
     color:#f77426;
    }
@@ -192,7 +206,7 @@ height:40px;
 top:100%;
 left:0;
 right:0;
-display:flex;
+display:${props => props.change ?"flex" :'none'};
 align-items:center;
 `
 const SemiNavBarMenu = styled.div`
@@ -210,4 +224,12 @@ const SemiNavBarMenu = styled.div`
 `
 const SemiNavbarItem = styled.div`
  cursor:pointer;
+   &:hover{
+     span{
+      color:#f77426;
+     }
+     i{
+      color:#f77426;
+     }
+   }
 `
