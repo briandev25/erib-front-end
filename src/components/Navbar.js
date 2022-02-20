@@ -18,7 +18,7 @@ function Navbar() {
                  <a href="#"><img src='/images/my-logo.png'/></a>
             </NavLogo>
             <SearchBox>
-                    <SearchInput />
+                    <SearchInput placeholder='What are you looking for' />
                     <div>
                     <i class="fa fa-search" aria-hidden="true"></i>
                     </div>
