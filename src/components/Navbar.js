@@ -1,9 +1,10 @@
 import React,{ useState } from 'react';
+import { useSelector } from 'react-redux'
 import styled from 'styled-components';
 
 function Navbar() {
   const [navbar,setNavbar] = useState(false);
-
+ const cart = useSelector(state =>state.cart);
   const changeBackground = () =>{
     if(window.scrollY >= 80){
       setNavbar(true);
@@ -37,10 +38,10 @@ function Navbar() {
                  <i class="fa fa-heart" aria-hidden="true"></i>
                  <span>Liked</span>
                  </MenuItem>
-                   <MenuItem change={navbar}>
+                   <NavBarMenuItem change={navbar}  >
                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                   <span>Cart</span>
-                   </MenuItem>
+                      <span>{cart.length}</span>
+                   </NavBarMenuItem>
             </LeftMenu>
             <BurgerMenu>
             <i class="fa fa-bars" aria-hidden="true"></i>
@@ -233,3 +234,27 @@ const SemiNavbarItem = styled.div`
      }
    }
 `
+const NavBarMenuItem = styled(MenuItem)`
+     position:relative;
+     &:hover{
+       span{
+          color:#000; 
+       }
+    }
+     span{
+      position:absolute;
+      top:22%;
+      right:0;
+     left:60%;
+     width:15px;
+     height:15px;
+     border-radius:50%;
+     background:#f77426;
+     display:flex;
+     align-items:center;
+     justify-content:center;
+     padding:13px;
+     color:#fff;
+     }
+    
+// `

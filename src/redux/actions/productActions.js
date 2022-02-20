@@ -15,6 +15,7 @@ export const selectProduct = (product) =>{
 }
 export const addToCart = (product) =>{
      return{
-         type:Actiontypes.ADD_TO_CART
+         type:Actiontypes.ADD_TO_CART,
+         payload:product
      }
 }
