@@ -2,14 +2,12 @@ import { Button } from 'bootstrap';
 import React from 'react';
 import { useDispatch,useSelector} from 'react-redux';
 import {addToCart } from '../redux/actions/productActions'
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 function CardItem({ image,title,description,category,price,id}) {
    const cart = useSelector(state => state.cart);
    const products = useSelector(state =>state.products)
    const dispatch = useDispatch()
   return (
-    <Link to={`/product/${id}`}>
       <CardContainer>
         <CardImage >
             <img src={image}/>
@@ -20,7 +18,6 @@ function CardItem({ image,title,description,category,price,id}) {
             <button onClick ={() => dispatch(addToCart(products.find(product =>product.id == id)))}>Add to basket</button>
         </CardInfo>
       </CardContainer>
-    </Link>
   )
 }
 

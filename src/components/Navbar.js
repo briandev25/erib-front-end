@@ -1,6 +1,7 @@
 import React,{ useState } from 'react';
 import { useSelector } from 'react-redux'
 import styled from 'styled-components';
+import { Link } from 'react-router-dom'
 
 function Navbar() {
   const [navbar,setNavbar] = useState(false);
@@ -15,9 +16,11 @@ function Navbar() {
   window.addEventListener('scroll',changeBackground);
   return (
        <NavContainer change={navbar}>
+            <Link to='/'>
             <NavLogo>
-                 <a href="#"><img src='/images/my-logo.png'/></a>
+                 <img src='/images/my-logo.png'/>
             </NavLogo>
+            </Link>
             <SearchBox>
                     <SearchInput placeholder='What are you looking for' />
                     <div>
@@ -38,10 +41,12 @@ function Navbar() {
                  <i class="fa fa-heart" aria-hidden="true"></i>
                  <span>Liked</span>
                  </MenuItem>
+                 <Link to="/cart">
                    <NavBarMenuItem change={navbar}  >
                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                      <span>{cart.length}</span>
+                      {cart.length > 0 && <span>{cart.length}</span>}
                    </NavBarMenuItem>
+                 </Link>
             </LeftMenu>
             <BurgerMenu>
             <i class="fa fa-bars" aria-hidden="true"></i>
@@ -101,6 +106,7 @@ const SearchBox = styled.div`
    justify-content:center;
    div{
     background:#f77426;
+    cursor:pointer;
     padding:8px 15px;
     color:#fff;
     display:flex;
@@ -145,7 +151,7 @@ align-items:center;
  }
  i{
    font-size:18px;
-   color:${props => props.change ?"#000" :'#999999'};
+   color:${props => props.change ?"#000" :'#fff'};
  }
  &:hover{
     span{
