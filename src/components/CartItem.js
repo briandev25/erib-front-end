@@ -1,8 +1,11 @@
 import React from 'react'
 import styled from 'styled-components';
 import DeleteIcon from '@mui/icons-material/Delete'; 
+import { useDispatch} from 'react-redux';
+import { removeFromCart } from '../redux/actions/productActions'
 
-function CartItem({title,image,price}) {
+function CartItem({title,image,price,id}) {
+    const dispatch = useDispatch();
   return (
     <Item>
         <ItemImage>
@@ -18,7 +21,7 @@ function CartItem({title,image,price}) {
              <div><span>1</span></div>
              <div>+</div>
              </VaryItems>
-             <DeleteItem>
+             <DeleteItem onClick ={() =>dispatch(removeFromCart(id))} >
                 <DeleteIcon />
              </DeleteItem>
         </ItemActions>

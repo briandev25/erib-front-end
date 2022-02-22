@@ -4,6 +4,9 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import CartItem from '../components/CartItem';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import Subtotal from '../components/Subtotal';
+
+
 function Cart() {
     const cart = useSelector(state => state.cart)
   return (
@@ -19,12 +22,13 @@ function Cart() {
                             image={item.image}
                             price={item.price}
                             title ={item.title}
+                            id ={item.id}
                             key ={item.id}
                            />
                       ))}
                 </ShoppingCart>
                 <CartSummary>
-
+                     <Subtotal cart={cart} />
                 </CartSummary>
             </CartItemsDetails></> :<NoCartItems>
                   <h3>You have no items in cart</h3>
